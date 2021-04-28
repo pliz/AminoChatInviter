@@ -1,22 +1,23 @@
 import amino
 import os
+ 
 
 from multiprocessing.pool import ThreadPool
 from rich.console import Console
 
 console = Console()
 
-console.print("[yellow]╔╦═╦══╦╦════╦═╦╗╔╦══╦╦═╦╦═══╦╦╦╦═════╗")
-console.print("[yellow]║║║╠══╬╬═╦═╗║╔╣╚╝╠═╦╣╠╗║╠═╦╦╬╬╣╠╦═╦═╗║")
-console.print("[yellow]║║╩║║║║║║║║║║╚╣╔╗╠╝╠╗╔╣║║║║║║╠╗╔╣╩╣╠╝║")
-console.print("[yellow]║╚╩╩╩╩╩╩╩╩═╝╚═╩╝╚╩═╝╚═╝╚╩╩╩═╩╝╚═╩═╩╝ ║")
-console.print("[yellow]╚════════════════════════════════════╝\n")
+console.print("[yellow]╔╦═╦══╦╦════╦═╦╗╔╦══╦╦═╦╦═══╦╦╦╦═════╗[/]")
+console.print("[yellow]║║║╠══╬╬═╦═╗║╔╣╚╝╠═╦╣╠╗║╠═╦╦╬╬╣╠╦═╦═╗║[/]")
+console.print("[yellow]║║╩║║║║║║║║║║╚╣╔╗╠╝╠╗╔╣║║║║║║╠╗╔╣╩╣╠╝║[/]")
+console.print("[yellow]║╚╩╩╩╩╩╩╩╩═╝╚═╩╝╚╩═╝╚═╝╚╩╩╩═╩╝╚═╩═╩╝ ║[/]")
+console.print("[yellow]╚════════════════════════════════════╝[/]\n")
 
-console.print("[cyan]╔╦═╦═══╦═╦══╦╦══════════╗")
-console.print("[cyan]║║░╩╦╦╗║╚╬═╦╣╠╦═╦═╦══╦╦╗║")
-console.print("[cyan]║║░░║║║╠╗║║╠╗╔╣╩╬╝╠╗╚╣║║║")
-console.print("[cyan]║╚══╬╗║╚═╩═╝╚═╩═╩═╩══╬╗║║")
-console.print("[cyan]╚═══╩═╩══════════════╩═╩╝\n")
+console.print("[cyan]╔╦═╦═══╦═╦══╦╦══════════╗[/]")
+console.print("[cyan]║║░╩╦╦╗║╚╬═╦╣╠╦═╦═╦══╦╦╗║[/]")
+console.print("[cyan]║║░░║║║╠╗║║╠╗╔╣╩╬╝╠╗╚╣║║║[/]")
+console.print("[cyan]║╚══╬╗║╚═╩═╝╚═╩═╩═╩══╬╗║║[/]")
+console.print("[cyan]╚═══╩═╩══════════════╩═╩╝[/]\n")
 
 def curlist(data):
     curusers=[]
@@ -32,37 +33,16 @@ def leadlist(data):
 
 def userlist(data):
     listusers=[]
-
     for userId in data.profile.userId:
        if lvlchoice.lower() == '1':
-          if sub_client.get_user_info(userId = userId).level<=x:
-           try:
-             listusers.remove(userId)
-           except:
-               pass
+          if sub_client.get_user_info(userId = userId).level<=x:           
+             listusers.remove(userId)           
           else:
              listusers.append(userId)
              pass
        else:
            listusers.append(userId)
-           pass       
-    
-    for userId in leadlist(usersLead):
-        try:
-            listusers.remove(userId)
-        except:
-            pass
-    else:
-        pass
-
-    for userId in curlist(usersCur):
-        try:
-            listusers.remove(userId) 
-        except:
-            pass
-    else:
-        pass   
-
+           pass  
     return listusers
 
 def comlist():
@@ -198,10 +178,13 @@ while not Your_decisions_determine_your_destiny:
             online_users = sub_client.get_online_users(start = 0, size = 50)
             usersCur = sub_client.get_all_users(type = "curators", start=0, size=50)
             usersLead = sub_client.get_all_users(type = "leaders", start=0, size=50)            
-            for userId in userlist(online_users):                
-                try:
-                    pool.apply_async(sub_client.invite_to_chat, [userId, object_id])                
-                except:               
+            for userId in (userlist(online_users)):            
+                if userId not in (curlist(usersCur) and leadlist(usersLead)):
+                    try:
+                        pool.apply_async(sub_client.invite_to_chat, [userId, object_id])                
+                    except:               
+                        pass
+                else:
                     pass
             limit += pool_count
             if limit < max:
