@@ -7,17 +7,17 @@ from rich.console import Console
 
 console = Console()
 
-console.print("[yellow]╔╦═╦══╦╦════╦═╦╗╔╦══╦╦═╦╦═══╦╦╦╦═════╗[/]")
-console.print("[yellow]║║║╠══╬╬═╦═╗║╔╣╚╝╠═╦╣╠╗║╠═╦╦╬╬╣╠╦═╦═╗║[/]")
-console.print("[yellow]║║╩║║║║║║║║║║╚╣╔╗╠╝╠╗╔╣║║║║║║╠╗╔╣╩╣╠╝║[/]")
-console.print("[yellow]║╚╩╩╩╩╩╩╩╩═╝╚═╩╝╚╩═╝╚═╝╚╩╩╩═╩╝╚═╩═╩╝ ║[/]")
-console.print("[yellow]╚════════════════════════════════════╝[/]\n")
+console.print("[yellow]╔╦═╦══╦╦════╦═╦╗╔╦══╦╦═╦╦═══╦╦╦╦═════╗")
+console.print("[yellow]║║║╠══╬╬═╦═╗║╔╣╚╝╠═╦╣╠╗║╠═╦╦╬╬╣╠╦═╦═╗║")
+console.print("[yellow]║║╩║║║║║║║║║║╚╣╔╗╠╝╠╗╔╣║║║║║║╠╗╔╣╩╣╠╝║")
+console.print("[yellow]║╚╩╩╩╩╩╩╩╩═╝╚═╩╝╚╩═╝╚═╝╚╩╩╩═╩╝╚═╩═╩╝ ║")
+console.print("[yellow]╚════════════════════════════════════╝\n")
 
-console.print("[cyan]╔╦═╦═══╦═╦══╦╦══════════╗[/]")
-console.print("[cyan]║║░╩╦╦╗║╚╬═╦╣╠╦═╦═╦══╦╦╗║[/]")
-console.print("[cyan]║║░░║║║╠╗║║╠╗╔╣╩╬╝╠╗╚╣║║║[/]")
-console.print("[cyan]║╚══╬╗║╚═╩═╝╚═╩═╩═╩══╬╗║║[/]")
-console.print("[cyan]╚═══╩═╩══════════════╩═╩╝[/]\n")
+console.print("[cyan]╔╦═╦═══╦═╦══╦╦══════════╗")
+console.print("[cyan]║║░╩╦╦╗║╚╬═╦╣╠╦═╦═╦══╦╦╗║")
+console.print("[cyan]║║░░║║║╠╗║║╠╗╔╣╩╬╝╠╗╚╣║║║")
+console.print("[cyan]║╚══╬╗║╚═╩═╝╚═╩═╩═╩══╬╗║║")
+console.print("[cyan]╚═══╩═╩══════════════╩═╩╝\n")
 
 def curlist(data):
     curusers=[]
@@ -75,9 +75,6 @@ def chatlist():
                 console.print("\n[red]Invalid chat number!")
 
 client=amino.Client()
-console.print("\n[cyan]Author of the script - Автор скрипта -  Soteasy ")
-console.print("\n[cyan]Amino link - Ссылка на Амино - http://aminoapps.com/p/3rt5ng \n")
-
 logger = True
 while logger == True:
     email=console.input("[yellow]Email: ")
